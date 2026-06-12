@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+/* Manual dark mode via .dark on <html> (set pre-hydration to avoid FOUC). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Static design tokens (Stripe-inspired, AUTO-tuned) ---------- */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-pill: 9999px;
+  --radius-card: 12px;
+  --radius-input: 6px;
+
+  /* Brand & accent (theme-independent) */
+  --color-primary: #533afd;
+  --color-primary-deep: #4434d4;
+  --color-primary-press: #2e2b8c;
+  --color-primary-soft: #665efd;
+  --color-sky: #0ea5e9;
+  --color-cyan: #06b6d4;
+  --color-ruby: #ea2261;
+  --color-magenta: #f96bee;
+}
+
+/* ---------- Themeable semantic tokens (flip with .dark) ---------- */
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-canvas-soft: var(--canvas-soft);
+  --color-canvas-cream: var(--canvas-cream);
+  --color-ink: var(--ink);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-mute: var(--ink-mute);
+  --color-hairline: var(--hairline);
+  --color-accent: var(--accent);
+}
+
+:root {
+  --canvas: #ffffff;
+  --canvas-soft: #f6f9fc;
+  --canvas-cream: #f5e9d4;
+  --ink: #0d253d;
+  --ink-secondary: #273951;
+  --ink-mute: #64748d;
+  --hairline: #e3e8ee;
+  --accent: #533afd;
+}
+
+.dark {
+  --canvas: #080c18;
+  --canvas-soft: #0e1424;
+  --canvas-cream: #181327;
+  --ink: #e9eef7;
+  --ink-secondary: #aebccf;
+  --ink-mute: #7e8ca5;
+  --hairline: rgba(255, 255, 255, 0.1);
+  --accent: #7c6cff;
+}
+
+/* ---------- Base ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-feature-settings: "ss01";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+}
+
+/* ---------- Typography tiers (Stripe: thin weight + negative tracking) ---------- */
+@layer components {
+  .text-display-hero {
+    font-weight: 300;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    font-size: clamp(2.75rem, 8vw, 4.5rem);
+  }
+  .text-display {
+    font-weight: 300;
+    line-height: 1.06;
+    letter-spacing: -0.035em;
+    font-size: clamp(2.25rem, 5.5vw, 3.25rem);
+  }
+  .text-heading {
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+  /* micro-cap per stripe.md; weight 500 kept for Inter legibility at this size */
+  .text-eyebrow {
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .gradient-text {
+    background-image: linear-gradient(
+      120deg,
+      var(--color-sky),
+      var(--color-cyan) 35%,
+      var(--color-primary) 65%,
+      var(--color-sky)
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-pan 9s linear infinite;
+  }
+}
+
+/* ---------- Gradient mesh blobs (signature backdrop) ---------- */
+@layer components {
+  .mesh-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    opacity: 0.55;
+    will-change: transform;
+  }
+}
+.dark .mesh-blob {
+  opacity: 0.42;
+}
+
+/* ---------- Radial theme transition (View Transitions API) ---------- */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  z-index: 1;
+}
+::view-transition-old(root) {
+  z-index: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+@keyframes gradient-pan {
+  to {
+    background-position: 200% 0;
+  }
+}
+
+/* ---------- Live-system micro-signals (opacity-only — zero layout work) ---------- */
+@keyframes status-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.status-dot {
+  animation: status-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-text {
+    animation: none;
+  }
+  .status-dot {
+    animation: none;
+  }
+  .console-caret {
+    animation: none;
+  }
+}
