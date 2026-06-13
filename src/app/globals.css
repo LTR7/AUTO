@@ -5,7 +5,7 @@
 
 /* ---------- Static design tokens (Stripe-inspired, AUTO-tuned) ---------- */
 @theme {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
 
   --radius-pill: 9999px;
   --radius-card: 12px;
