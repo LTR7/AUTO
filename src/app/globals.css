@@ -68,7 +68,6 @@ body {
   color: var(--ink);
   font-feature-settings: "ss01";
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
 
 ::selection {
