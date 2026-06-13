@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { navCta, navLinks } from "@/constants/nav";
+import { navLinks } from "@/constants/nav";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { cn } from "@/lib/cn";
@@ -53,9 +52,6 @@ export function Nav() {
 
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <Button href={navCta.href} className="hidden sm:inline-flex">
-              {navCta.label}
-            </Button>
             <MobileMenu />
           </div>
         </nav>

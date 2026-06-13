@@ -43,10 +43,7 @@ export function Hero() {
             data-hero-ctas
             className="mt-9 flex flex-wrap items-center justify-center gap-3"
           >
-            <Button href={hero.primaryCta.href} size="lg">
-              {hero.primaryCta.label}
-            </Button>
-            <Button href={hero.secondaryCta.href} size="lg" variant="secondary">
+            <Button href={hero.secondaryCta.href} size="lg">
               {hero.secondaryCta.label}
             </Button>
           </div>

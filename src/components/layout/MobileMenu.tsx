@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { navCta, navLinks } from "@/constants/nav";
-import { Button } from "@/components/ui/Button";
+import { navLinks } from "@/constants/nav";
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
@@ -62,14 +61,6 @@ export function MobileMenu() {
                   {link.label}
                 </a>
               ))}
-              <Button
-                href={navCta.href}
-                size="lg"
-                onClick={() => setOpen(false)}
-                className="mt-8 self-start"
-              >
-                {navCta.label}
-              </Button>
             </nav>
           </div>
         </div>

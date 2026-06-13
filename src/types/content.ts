@@ -55,5 +55,4 @@ export interface Statement {
 export interface Microcopy {
   heroStatus: string;
   projectsPrompt: string;
-  joinStatus: string;
 }

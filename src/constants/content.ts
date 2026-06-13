@@ -5,18 +5,15 @@ import type {
   CultureValue,
   Microcopy,
   Principle,
-  Profile,
   Project,
   Statement,
 } from "@/types/content";
-import { APPLY_URL, contact } from "@/constants/social";
 
 export const hero = {
   headlineLead: "AUTO",
   headlineRest: ["The Agentic AI Club", "for Builders"],
   subhead:
     "We build, experiment, and execute at the frontier of autonomous systems, agentic workflows, and AI orchestration.",
-  primaryCta: { label: "Apply to Join", href: "#join" } satisfies CtaLink,
   secondaryCta: { label: "Read Manifesto", href: "#manifesto" } satisfies CtaLink,
   scrollLabel: "Scroll",
 };
@@ -133,21 +130,7 @@ export const projects = {
   ] satisfies Project[],
 };
 
-export const whoShouldJoin = {
-  heading: "Drive and execution matter more than credentials",
-  intro:
-    "We don't care where you go to school or what your GPA is. We care about what you make, what you're obsessed with, and whether you show up and ship.",
-  profiles: [
-    { role: "Engineers", description: "CS, ECE, and adjacent — people who can build and want to build agents." },
-    { role: "Researchers", description: "Those who want to understand how autonomous systems actually work." },
-    { role: "Founders", description: "Builders thinking about AI-native products, companies, or workflows." },
-    { role: "Operators", description: "People who want to deploy AI to solve operational and process problems." },
-    { role: "Designers", description: "Those reimagining interfaces and experiences for AI-native systems." },
-    { role: "Obsessives", description: "Anyone who cannot stop thinking about what agents will make possible." },
-  ] satisfies Profile[],
-};
-
-/** Full-bleed typographic statement band (copy promoted from whoShouldJoin's closing). */
+/** Full-bleed typographic statement band. */
 export const statement = {
   lines: [
     "No passive membership.",
@@ -160,7 +143,6 @@ export const statement = {
 export const microcopy = {
   heroStatus: "agents: online",
   projectsPrompt: "$ auto run --list projects",
-  joinStatus: "recruiting: open",
 } satisfies Microcopy;
 
 export const culture = {
@@ -177,15 +159,3 @@ export const culture = {
   ] satisfies CultureValue[],
 };
 
-export const join = {
-  heading: "If you are not satisfied watching the future happen from the sidelines.",
-  body:
-    "We are actively looking for builders, engineers, researchers, and visionaries who are obsessed with agentic AI and want to push the boundaries of what autonomous systems can do.",
-  socialPrompt: {
-    before: "Follow us on ",
-    linkLabel: "LinkedIn",
-    after: " for updates and announcements.",
-  },
-  primaryCta: { label: "Apply Now", href: APPLY_URL } satisfies CtaLink,
-  secondaryCta: { label: "Contact Us", href: `mailto:${contact.email}` } satisfies CtaLink,
-};
